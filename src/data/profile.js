@@ -20,7 +20,7 @@ export const profile = {
     startDate: 'March 2021',
     endDate: 'Present',
   },
-  image: '/images/profile/harshal-katrodiya.jpg',
+  image: '/images/profile/harshal-katrodiya.png',
   valueProposition:
     'I help companies build scalable Laravel backends, integrate complex third-party systems, and ship production-ready enterprise software.',
   statistics: [

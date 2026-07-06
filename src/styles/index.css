@@ -1,0 +1,189 @@
+/* Inter — the standard for premium developer-focused UIs */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground;
+    transition:
+      background-color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+      color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  ::selection {
+    background-color: var(--primary-glow);
+    color: var(--text-primary);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  .skip-link:focus-visible {
+    @apply ring-2 ring-white ring-offset-2 ring-offset-primary;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ─── Layout ───────────────────────────────────────────────────────────── */
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 md:px-8 lg:px-12 2xl:max-w-container-lg;
+  }
+
+  /* Consistent vertical rhythm across all sections */
+  .section-py {
+    @apply py-20 md:py-24 lg:py-28;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* ─── Section header ───────────────────────────────────────────────────── */
+  .section-header {
+    @apply mb-10 text-center md:mb-12 lg:mb-14;
+  }
+
+  .section-eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  /* Eyebrow line decorations */
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    @apply inline-block h-px w-8 bg-primary;
+    opacity: 0.4;
+  }
+
+  .section-title {
+    @apply text-heading-2 font-bold tracking-tight text-foreground md:text-heading-1 text-balance;
+  }
+
+  /* ─── Cards ────────────────────────────────────────────────────────────── */
+  .card-base {
+    @apply rounded-2xl border border-border bg-background-card shadow-card transition-all duration-200;
+  }
+
+  .card-glass {
+    @apply rounded-2xl border border-border shadow-card backdrop-blur-xl transition-all duration-200;
+    background-color: color-mix(in srgb, var(--bg-card) 80%, transparent);
+  }
+
+  .card-hover:hover {
+    border-color: color-mix(in srgb, var(--primary) 28%, transparent);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Thin gradient top stripe on elevated cards */
+  .card-gradient-accent {
+    @apply absolute left-0 right-0 top-0 h-px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0.5;
+  }
+
+  /* ─── Icon box ─────────────────────────────────────────────────────────── */
+  .icon-box {
+    @apply flex items-center justify-center rounded-xl text-primary transition-all duration-200;
+    background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+
+  .icon-box-hover {
+    transition-property: transform, background-color, box-shadow;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-duration: 250ms;
+  }
+
+  .group:hover .icon-box-hover {
+    transform: scale(1.08);
+    background-color: color-mix(in srgb, var(--primary) 16%, transparent);
+    box-shadow: 0 0 20px var(--primary-glow);
+  }
+
+  /* ─── Form inputs ──────────────────────────────────────────────────────── */
+  .input-base {
+    @apply w-full rounded-xl border border-border bg-background-card px-4 py-3.5 text-[15px] text-foreground;
+    @apply placeholder:text-foreground-muted;
+    @apply transition-all duration-200;
+    @apply disabled:cursor-not-allowed disabled:opacity-55;
+    box-shadow: var(--shadow-card);
+  }
+
+  .input-base:focus {
+    @apply outline-none border-primary;
+    box-shadow: var(--shadow-card), 0 0 0 3px var(--primary-glow);
+  }
+
+  .input-base:hover:not(:focus):not(:disabled) {
+    border-color: var(--border-strong);
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* Marquee */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 55s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Gradient text — used for headline highlights */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* Noise overlay — very subtle, low z-index */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  .light .noise-overlay { opacity: 0.016; }
+}

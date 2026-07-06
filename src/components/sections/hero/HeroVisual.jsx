@@ -269,7 +269,7 @@ export function HeroVisual() {
                 stiffness: 140,
                 damping: 16,
               }}
-              className="absolute inset-0 h-full w-full object-cover object-top will-change-transform"
+              className="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
             />
           )}
 

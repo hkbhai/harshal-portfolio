@@ -25,28 +25,32 @@ export function Experience() {
         {/* Desktop Timeline */}
         <div className="hidden lg:block">
           <div className="relative">
-            {/* Horizontal timeline line */}
-            <div className="absolute left-0 right-0 top-[88px] h-px bg-border" aria-hidden="true" />
-
-            <div className="grid grid-cols-[1fr_2.5fr_1fr] items-start gap-8">
+            {/* Timeline track with markers and connecting line */}
+            <div className="mb-10 flex items-center justify-between gap-8 px-8">
               {/* Start Marker */}
               <motion.div
                 initial={reducedMotion ? {} : { opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="pt-16 text-right"
+                className="flex flex-col items-center gap-3"
               >
-                <div className="card-base inline-block p-4">
+                <div className="card-base p-4 text-center">
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">
                     Started
                   </p>
                   <p className="mt-1 text-lg font-bold text-foreground">{job.startDate}</p>
                 </div>
+                <div
+                  className="h-4 w-4 rounded-full border-4 border-background bg-primary shadow-[0_0_8px_var(--primary-glow)]"
+                  aria-hidden="true"
+                />
               </motion.div>
 
-              {/* Experience Card */}
-              <ExperienceCard job={job} index={0} />
+              {/* Horizontal timeline line */}
+              <div className="relative flex flex-1 items-center" aria-hidden="true">
+                <div className="h-px flex-1 bg-gradient-to-r from-primary/50 via-border to-accent/50" />
+              </div>
 
               {/* End Marker */}
               <motion.div
@@ -54,16 +58,23 @@ export function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="pt-16"
+                className="flex flex-col items-center gap-3"
               >
-                <div className="inline-block rounded-2xl border border-primary/30 bg-primary/10 p-4">
+                <div className="rounded-2xl border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                     Today
                   </p>
                   <p className="mt-1 text-lg font-bold text-foreground">{job.endDate}</p>
                 </div>
+                <div
+                  className="h-4 w-4 rounded-full border-4 border-background bg-accent shadow-[0_0_8px_var(--accent-glow)]"
+                  aria-hidden="true"
+                />
               </motion.div>
             </div>
+
+            {/* Experience Card */}
+            <ExperienceCard job={job} index={0} />
           </div>
         </div>
 

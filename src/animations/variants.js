@@ -94,6 +94,25 @@ export const heroVisual = {
   },
 };
 
+// ─── Hero profile image ──────────────────────────────────────────────────────
+export const heroImage = {
+  hidden: { opacity: 0, scale: 1.08, filter: 'blur(10px)' },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { duration: 0.8, ease: SPRING },
+  },
+  float: {
+    y: [0, -6, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
 // ─── Floating tech cards (pure Framer Motion — no CSS animation) ─────────────
 // Each card gets its own y-range via custom prop passed into variants
 export const floatingCard = {

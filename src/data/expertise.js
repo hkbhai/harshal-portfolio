@@ -30,9 +30,27 @@ export const expertiseAreas = [
     icon: 'Search',
   },
   {
-    id: 'production-delivery',
-    title: 'Production Delivery',
-    description: 'Shipping enterprise software, resolving production issues and maintaining scalable systems.',
-    icon: 'Rocket',
+    id: 'web-scraping',
+    title: 'Web Scraping & Data Extraction',
+    description: 'Automated data collection from websites, APIs and documents using Laravel, PHP and custom crawlers.',
+    icon: 'Globe',
+  },
+  {
+    id: 'slot-booking',
+    title: 'Slot & Time Booking',
+    description: 'End-to-end booking systems with time slots, availability management, reminders and calendar integrations.',
+    icon: 'CalendarClock',
+  },
+  {
+    id: 'form-builder',
+    title: 'Prime Laravel Form Builder',
+    description: 'Dynamic form builders with drag-drop fields, validation rules, conditional logic and submission management.',
+    icon: 'FileText',
+  },
+  {
+    id: 'crud-manager',
+    title: 'CRUD Manager',
+    description: 'Rapid CRUD scaffolding and admin panels with filters, sorting, permissions and bulk operations.',
+    icon: 'Table',
   },
 ];

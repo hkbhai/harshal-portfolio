@@ -1,4 +1,4 @@
-import { Webhook, Cloud, HardDrive, MessageSquare, MousePointer2, Code2, Bot } from 'lucide-react';
+import { Webhook, Cloud, HardDrive, MessageSquare, MousePointer2, Code2, Bot, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const lucideIconMap = {
@@ -9,6 +9,7 @@ const lucideIconMap = {
   MousePointer2,
   Code2,
   Bot,
+  Globe,
 };
 
 export function TechIcon({ icon, lucideIcon, className, size = 24, monochrome = false }) {

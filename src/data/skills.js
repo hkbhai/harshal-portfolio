@@ -61,6 +61,7 @@ export const trustedTechnologies = [
   { name: 'Elasticsearch', icon: 'Search' },
   { name: 'Amazon S3', icon: 'Cloud' },
   { name: 'Cloudflare CDN', icon: 'Globe' },
+  { name: 'Web Scraping', icon: 'Globe' },
   { name: 'Git', icon: 'GitBranch' },
   { name: 'GitHub', icon: 'Github' },
   { name: 'ChatGPT', icon: 'MessageSquare' },

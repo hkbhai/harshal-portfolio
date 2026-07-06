@@ -8,7 +8,7 @@ export function HeroStats() {
       variants={heroItem}
       className="grid grid-cols-2 gap-3 pt-4 sm:flex sm:flex-wrap sm:items-center sm:gap-6"
     >
-      {profile.statistics.map((stat, index) => (
+      {profile.statistics.map((stat) => (
         <div
           key={stat.label}
           className="flex flex-col rounded-xl border border-border bg-background-card/60 px-4 py-3 shadow-card backdrop-blur-sm"

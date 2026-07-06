@@ -112,6 +112,22 @@ export const skillCategories = [
     ],
   },
   {
+    id: 'automation-data',
+    label: 'Automation & Data',
+    skills: [
+      {
+        name: 'Web Scraping',
+        lucideIcon: 'Globe',
+        description: 'Automated data extraction from websites and APIs',
+      },
+      {
+        name: 'Data Parsing',
+        lucideIcon: 'Code2',
+        description: 'HTML, XML, JSON parsing and structured data transformation',
+      },
+    ],
+  },
+  {
     id: 'version-control',
     label: 'Version Control',
     skills: [

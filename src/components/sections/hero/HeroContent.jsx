@@ -8,6 +8,7 @@ import { HeroButtons } from './HeroButtons';
 import { HeroTechStack } from './HeroTechStack';
 import { HeroStats } from './HeroStats';
 
+
 /**
  * Wraps a keyword in the H1 with a premium gradient span.
  * We highlight "Scalable" — a recruiter-resonant word.

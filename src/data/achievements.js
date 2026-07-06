@@ -26,5 +26,17 @@ export const achievements = {
       description: 'Converted Figma designs into responsive React applications using reusable components.',
       icon: 'Monitor',
     },
+    {
+      id: 'performance-optimization',
+      title: 'Performance Optimization',
+      description: 'Improved application speed through query optimization, caching strategies and queue-based processing.',
+      icon: 'Gauge',
+    },
+    {
+      id: 'team-collaboration',
+      title: 'Team Collaboration',
+      description: 'Worked with cross-functional teams and guided junior developers through code reviews and best practices.',
+      icon: 'Users',
+    },
   ],
 };

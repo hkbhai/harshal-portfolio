@@ -1,6 +1,6 @@
-import { useReducer } from 'react';
-import { motion } from 'framer-motion';
-import { heroVisual, glowPulse, floatingCard } from '@/animations/variants';
+import { useReducer, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { heroVisual, heroImage, floatingCard } from '@/animations/variants';
 import { TechLogo } from '@ui/TechLogo';
 import { floatingTechCards } from '@/data/skills';
 import { profile } from '@/data/profile';
@@ -124,11 +124,42 @@ function FloatingCard({ card, reducedMotion }) {
 export function HeroVisual() {
   const reducedMotion = useReducedMotion();
   const [imageStatus, dispatch] = useReducer(imageReducer, 'loading');
+  const frameRef = useRef(null);
 
   const isLoaded = imageStatus === 'loaded';
   const hasError = imageStatus === 'error';
   const showPhoto = !hasError;
   const showPlaceholder = !isLoaded || hasError;
+  const enableTilt = !reducedMotion;
+
+  // ── Mouse-driven 3D tilt ────────────────────────────────────────────────────
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
+    stiffness: 120,
+    damping: 18,
+    mass: 0.8,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
+    stiffness: 120,
+    damping: 18,
+    mass: 0.8,
+  });
+
+  const handleMouseMove = (event) => {
+    if (!enableTilt || !frameRef.current) return;
+    const rect = frameRef.current.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <motion.div
@@ -136,6 +167,7 @@ export function HeroVisual() {
       initial="hidden"
       animate="visible"
       className="relative flex items-center justify-center lg:justify-end"
+      style={{ perspective: 1000 }}
     >
       {/* Background glow — positioned relative to photo container */}
       <motion.div
@@ -155,7 +187,17 @@ export function HeroVisual() {
       />
 
       {/* Photo container */}
-      <div className="relative group">
+      <motion.div
+        ref={frameRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="relative group"
+        style={{
+          rotateX: enableTilt ? rotateX : 0,
+          rotateY: enableTilt ? rotateY : 0,
+          transformStyle: 'preserve-3d',
+        }}
+      >
         {/* Outer decorative rings with hover animation */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -175,15 +217,16 @@ export function HeroVisual() {
 
         {/* Photo frame with premium hover effect */}
         <motion.div
-          whileHover={reducedMotion ? {} : { scale: 1.03, y: -8 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          whileHover={reducedMotion ? {} : { scale: 1.02, y: -4 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
           className={cn(
             'group relative z-10 overflow-hidden rounded-3xl',
             'border border-border shadow-card',
             'bg-white dark:bg-[#0d0d14]',
             'h-[360px] w-[300px] md:h-[440px] md:w-[360px] lg:h-[500px] lg:w-[400px]',
-            'hover:shadow-glow transition-all duration-500',
+            'hover:shadow-glow transition-shadow duration-500',
             'hover:border-primary/30',
+            'gradient-border',
           )}
         >
           {/* Placeholder — visible while loading or on error */}
@@ -210,14 +253,23 @@ export function HeroVisual() {
               fetchPriority="high"
               onLoad={() => dispatch('LOAD')}
               onError={() => dispatch('ERROR')}
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className={cn(
-                'absolute inset-0 h-full w-full object-cover object-top',
-                'transition-opacity duration-500',
-                isLoaded ? 'opacity-100' : 'opacity-0',
-              )}
+              variants={heroImage}
+              initial="hidden"
+              animate={
+                reducedMotion
+                  ? isLoaded
+                    ? 'visible'
+                    : 'hidden'
+                  : isLoaded
+                    ? ['visible', 'float']
+                    : 'hidden'
+              }
+              transition={{
+                type: 'spring',
+                stiffness: 140,
+                damping: 16,
+              }}
+              className="absolute inset-0 h-full w-full object-cover object-top will-change-transform"
             />
           )}
 
@@ -236,7 +288,7 @@ export function HeroVisual() {
         {floatingTechCards.map((card) => (
           <FloatingCard key={card.name} card={card} reducedMotion={reducedMotion} />
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

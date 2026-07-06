@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Boxes, Component, Webhook, BrainCircuit, Search, Rocket } from 'lucide-react';
+import { Boxes, Component, Webhook, BrainCircuit, Search, Rocket, Globe, CalendarClock, FileText, Table } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-const iconMap = { Boxes, Component, Webhook, BrainCircuit, Search, Rocket };
+const iconMap = { Boxes, Component, Webhook, BrainCircuit, Search, Rocket, Globe, CalendarClock, FileText, Table };
 
 export function ExpertiseCard({ title, description, icon, index = 0 }) {
   const reducedMotion = useReducedMotion();

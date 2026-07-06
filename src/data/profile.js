@@ -26,7 +26,8 @@ export const profile = {
   statistics: [
     { label: 'Years Experience', value: '5+' },
     { label: 'Projects Shipped', value: '15+' },
-    { label: 'Enterprise Systems', value: '4+' },
+    { label: 'Enterprise Systems', value: '5+' },
     { label: 'APIs Integrated', value: '20+' },
+    { label: 'Payment Gateways', value: '10+' },
   ],
 };

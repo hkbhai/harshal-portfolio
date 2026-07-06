@@ -78,12 +78,28 @@
   .section-eyebrow::before,
   .section-eyebrow::after {
     content: '';
-    @apply inline-block h-px w-8 bg-primary;
-    opacity: 0.4;
+    @apply inline-block h-px w-8;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0.55;
+  }
+
+  .section-eyebrow::before {
+    background: linear-gradient(90deg, transparent, var(--primary));
+  }
+
+  .section-eyebrow::after {
+    background: linear-gradient(90deg, var(--primary), transparent);
   }
 
   .section-title {
     @apply text-heading-2 font-bold tracking-tight text-foreground md:text-heading-1 text-balance;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply mx-auto mt-4 block h-0.5 w-16 rounded-full;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0.75;
   }
 
   /* ─── Cards ────────────────────────────────────────────────────────────── */
@@ -104,8 +120,38 @@
   /* Thin gradient top stripe on elevated cards */
   .card-gradient-accent {
     @apply absolute left-0 right-0 top-0 h-px;
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    opacity: 0.5;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+    opacity: 0.7;
+  }
+
+  /* Gradient border — used for premium frames */
+  .gradient-border {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.65;
+    transition: opacity 0.3s ease;
+  }
+
+  .gradient-border:hover::before {
+    opacity: 1;
   }
 
   /* ─── Icon box ─────────────────────────────────────────────────────────── */

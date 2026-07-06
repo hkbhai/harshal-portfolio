@@ -4,7 +4,7 @@ export const projects = {
   items: [
     {
       id: 'doblly',
-      name: 'DoBlly',
+      name: 'Doblly',
       businessDomain: 'E-Commerce',
       overview:
         'A Laravel-based eCommerce platform with automated product synchronization and AI-assisted content generation, integrated with AliExpress for seamless product import and order management.',

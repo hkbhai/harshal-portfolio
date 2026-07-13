@@ -284,27 +284,6 @@ export function HeroVisual() {
               }} />
           )}
 
-          {/* Hover photo — crossfades in with zoom animation on hover */}
-          {showPhoto && (
-            <img
-              src="/images/profile/Harshal-desk-photo.png"
-              alt={`${profile.name} — at work`}
-              width={400}
-              height={500}
-              loading="lazy"
-              decoding="async"
-              className={cn(
-                'absolute inset-0 h-full w-full object-cover object-center',
-                'opacity-0 scale-105',
-                'transition-[opacity,transform] duration-500 ease-out',
-                'group-hover:opacity-100 group-hover:scale-100',
-              )}
-              style={{
-                backfaceVisibility: 'hidden',
-              }}
-            />
-          )}
-
           {/* Animated corner accents on hover */}
           <div
             className="absolute left-0 top-0 h-14 w-14 border-l-2 border-t-2 border-primary opacity-0 transition-all duration-300 group-hover:opacity-100"

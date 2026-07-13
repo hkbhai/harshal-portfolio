@@ -36,8 +36,21 @@ export function About() {
             </div>
           </AnimatedSection>
 
-          {/* Right: Info Panel */}
+          {/* Right: Photo + Info Panel */}
           <AnimatedSection direction="right" className="lg:pl-8">
+            {/* Workspace photo — landscape aspect, no cropping */}
+            <div className="group mb-8 overflow-hidden rounded-3xl border border-border shadow-card gradient-border">
+              <img
+                src="/images/profile/Harshal-desk-photo.png"
+                alt="Harshal Katrodiya at his workspace"
+                width={1536}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[3/2] w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+              />
+            </div>
+
             <div className="card-glass p-6 md:p-8" aria-label="Professional information">
               <h3 className="mb-6 text-xl font-bold text-foreground md:text-heading-4">
                 Professional Snapshot

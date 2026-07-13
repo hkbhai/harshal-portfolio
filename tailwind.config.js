@@ -13,34 +13,34 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: 'var(--bg-default)',
-          surface: 'var(--bg-surface)',
-          card:    'var(--bg-card)',
-          hover:   'var(--bg-hover)',
-          subtle:  'var(--bg-subtle)',
+          DEFAULT: 'rgb(var(--bg-default-rgb) / <alpha-value>)',
+          surface: 'rgb(var(--bg-surface-rgb) / <alpha-value>)',
+          card:    'rgb(var(--bg-card-rgb) / <alpha-value>)',
+          hover:   'rgb(var(--bg-hover-rgb) / <alpha-value>)',
+          subtle:  'rgb(var(--bg-subtle-rgb) / <alpha-value>)',
         },
         foreground: {
-          DEFAULT:   'var(--text-primary)',
-          secondary: 'var(--text-secondary)',
-          muted:     'var(--text-muted)',
+          DEFAULT:   'rgb(var(--text-primary-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--text-secondary-rgb) / <alpha-value>)',
+          muted:     'rgb(var(--text-muted-rgb) / <alpha-value>)',
         },
         primary: {
-          DEFAULT: 'var(--primary)',
-          hover:   'var(--primary-hover)',
+          DEFAULT: 'rgb(var(--primary-rgb) / <alpha-value>)',
+          hover:   'rgb(var(--primary-hover-rgb) / <alpha-value>)',
           glow:    'var(--primary-glow)',
         },
         accent: {
-          DEFAULT: 'var(--accent)',
+          DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
           glow:    'var(--accent-glow)',
         },
         border: {
-          DEFAULT: 'var(--border-default)',
-          strong:  'var(--border-strong)',
-          subtle:  'var(--border-subtle)',
+          DEFAULT: 'rgb(var(--border-default-rgb) / calc(<alpha-value> * var(--border-default-alpha)))',
+          strong:  'rgb(var(--border-strong-rgb) / calc(<alpha-value> * var(--border-strong-alpha)))',
+          subtle:  'rgb(var(--border-subtle-rgb) / calc(<alpha-value> * var(--border-subtle-alpha)))',
         },
-        success: 'var(--success)',
-        warning: 'var(--warning)',
-        error:   'var(--error)',
+        success: 'rgb(var(--success-rgb) / <alpha-value>)',
+        warning: 'rgb(var(--warning-rgb) / <alpha-value>)',
+        error:   'rgb(var(--error-rgb) / <alpha-value>)',
       },
 
       // Inter first — the gold standard for developer-focused UIs (Vercel/Linear/Stripe)

@@ -12,8 +12,29 @@ export function LogoMark({ className = 'h-8 w-8' }) {
       className={className}
       aria-hidden="true"
     >
-      {/* Background square with primary color */}
-      <rect width="40" height="40" rx="10" fill="var(--primary)" />
+      {/* Background square with animated gradient — subtle lighting shifts */}
+      <defs>
+        <linearGradient id="hk-logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#6a11cb">
+            <animate
+              attributeName="stop-color"
+              values="#6a11cb;#8b3df0;#6a11cb"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="55%" stopColor="#4743e4" />
+          <stop offset="100%" stopColor="#2575fc">
+            <animate
+              attributeName="stop-color"
+              values="#2575fc;#5a97ff;#2575fc"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </linearGradient>
+      </defs>
+      <rect width="40" height="40" rx="10" fill="url(#hk-logo-gradient)" />
 
       {/* H letter */}
       <path

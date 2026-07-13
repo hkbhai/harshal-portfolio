@@ -35,24 +35,47 @@
   --text-secondary: #8b95a8;
   --text-muted:     #5a6478;
 
-  /* Brand — indigo with cyan accent */
-  --primary:       #6366f1;
-  --primary-hover: #7c7ff5;
-  --primary-glow:  rgba(99, 102, 241, 0.30);
+  /* Brand — purple→blue gradient */
+  --primary:       #6a11cb;
+  --primary-hover: #2575fc;
+  --primary-glow:  rgba(106, 17, 203, 0.32);
+  --primary-gradient: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 
-  --accent:      #22d3ee;
-  --accent-glow: rgba(34, 211, 238, 0.18);
+  --accent:      #6a11cb;
+  --accent-glow: rgba(106, 17, 203, 0.18);
 
   /* Semantic */
   --success: #22c55e;
   --warning: #f59e0b;
   --error:   #f87171;
 
-  /* Shadows — dark-tinted, slight indigo hint on hover */
+  /* RGB channels — required for Tailwind opacity modifiers (e.g. bg-primary/10) */
+  --bg-default-rgb:  7 7 11;
+  --bg-surface-rgb:  13 13 20;
+  --bg-card-rgb:     20 20 32;
+  --bg-hover-rgb:    28 28 44;
+  --bg-subtle-rgb:   10 10 16;
+  --text-primary-rgb:   240 240 245;
+  --text-secondary-rgb: 139 149 168;
+  --text-muted-rgb:     90 100 120;
+  --primary-rgb:       106 17 203;
+  --primary-hover-rgb: 37 117 252;
+  --accent-rgb:        106 17 203;
+  --border-default-rgb: 255 255 255;
+  --border-strong-rgb:  255 255 255;
+  --border-subtle-rgb:  255 255 255;
+  --border-default-alpha: 0.08;
+  --border-strong-alpha:  0.16;
+  --border-subtle-alpha:  0.04;
+  --success-rgb: 34 197 94;
+  --warning-rgb: 245 158 11;
+  --error-rgb:   248 113 113;
+
+  /* Shadows — dark-tinted, slight purple hint on hover */
   --shadow-card:      0 1px 3px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04);
-  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.55), 0 28px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(99,102,241,0.14);
+  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.55), 0 28px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(106,17,203,0.20);
   --shadow-navbar:    0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.42);
-  --shadow-glow:      0 0 0 1px rgba(99,102,241,0.22), 0 8px 40px rgba(99,102,241,0.16);
+  --shadow-glow:      0 0 0 1px rgba(106,17,203,0.28), 0 8px 40px rgba(37,117,252,0.20);
 }
 
 /* ─── Light Mode ──────────────────────────────────────────────────────────── */
@@ -75,21 +98,44 @@
   --text-muted:     #6b7280;
 
   /* Brand */
-  --primary:       #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-glow:  rgba(79, 70, 229, 0.16);
+  --primary:       #6a11cb;
+  --primary-hover: #2575fc;
+  --primary-glow:  rgba(106, 17, 203, 0.18);
+  --primary-gradient: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 
-  --accent:      #0891b2;
-  --accent-glow: rgba(8, 145, 178, 0.12);
+  --accent:      #6a11cb;
+  --accent-glow: rgba(106, 17, 203, 0.14);
 
   /* Semantic */
   --success: #16a34a;
   --warning: #d97706;
   --error:   #dc2626;
 
+  /* RGB channels — required for Tailwind opacity modifiers (e.g. bg-primary/10) */
+  --bg-default-rgb:  247 247 251;
+  --bg-surface-rgb:  238 239 246;
+  --bg-card-rgb:     255 255 255;
+  --bg-hover-rgb:    234 234 243;
+  --bg-subtle-rgb:   232 232 240;
+  --text-primary-rgb:   14 22 40;
+  --text-secondary-rgb: 74 85 104;
+  --text-muted-rgb:     107 114 128;
+  --primary-rgb:       106 17 203;
+  --primary-hover-rgb: 37 117 252;
+  --accent-rgb:        106 17 203;
+  --border-default-rgb: 15 23 42;
+  --border-strong-rgb:  15 23 42;
+  --border-subtle-rgb:  15 23 42;
+  --border-default-alpha: 0.09;
+  --border-strong-alpha:  0.18;
+  --border-subtle-alpha:  0.05;
+  --success-rgb: 22 163 74;
+  --warning-rgb: 217 119 6;
+  --error-rgb:   220 38 38;
+
   /* Shadows — naturally lit, layered */
   --shadow-card:      0 1px 2px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.07), inset 0 1px 0 rgba(255,255,255,0.80);
-  --shadow-card-hover: 0 4px 20px rgba(15,23,42,0.10), 0 24px 48px rgba(15,23,42,0.10), 0 0 0 1px rgba(79,70,229,0.14);
+  --shadow-card-hover: 0 4px 20px rgba(15,23,42,0.10), 0 24px 48px rgba(15,23,42,0.10), 0 0 0 1px rgba(106,17,203,0.16);
   --shadow-navbar:    0 1px 0 rgba(15,23,42,0.07), 0 4px 24px rgba(15,23,42,0.06);
-  --shadow-glow:      0 0 0 1px rgba(79,70,229,0.16), 0 8px 40px rgba(79,70,229,0.10);
+  --shadow-glow:      0 0 0 1px rgba(106,17,203,0.18), 0 8px 40px rgba(37,117,252,0.12);
 }

@@ -1,7 +1,10 @@
 export const heroTechStack = [
   'Laravel',
   'PHP',
+  'Python FastAPI',
   'React',
+  'Vue.js',
+  'Next.js',
   'MySQL',
   'Elasticsearch',
   'Tailwind CSS',
@@ -52,7 +55,10 @@ export const floatingTechCards = [
 export const trustedTechnologies = [
   { name: 'Laravel', icon: 'Code2' },
   { name: 'PHP', icon: 'Code2' },
+  { name: 'Python FastAPI', icon: 'Zap' },
   { name: 'React', icon: 'Component' },
+  { name: 'Vue.js', icon: 'Component' },
+  { name: 'Next.js', icon: 'Triangle' },
   { name: 'JavaScript', icon: 'Braces' },
   { name: 'MySQL', icon: 'Database' },
   { name: 'REST API', icon: 'Webhook' },

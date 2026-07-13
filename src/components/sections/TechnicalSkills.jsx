@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import { Container } from '@ui/Container';
 import { SkillCard } from '@ui/SkillCard';
 import { AnimatedSection } from '@common/AnimatedSection';
 import { skillCategories } from '@/data/skillCategories';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export function TechnicalSkills() {
   const [activeCategory, setActiveCategory] = useState(skillCategories[0].id);
@@ -29,7 +35,7 @@ export function TechnicalSkills() {
         </AnimatedSection>
 
         {/* Desktop/Tablet: Two-column layout */}
-        <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
+        <div className="hidden gap-8 lg:grid lg:grid-cols-[280px_1fr] lg:gap-12">
           {/* Left: Category Navigation */}
           <AnimatedSection direction="left">
             <nav
@@ -102,19 +108,33 @@ export function TechnicalSkills() {
           </AnimatedSection>
         </div>
 
-        {/* Mobile: Accordion-style stacked categories */}
-        <div className="mt-12 lg:hidden">
-          {skillCategories.map((category, catIndex) => (
-            <AnimatedSection key={category.id} delay={catIndex * 0.05}>
-              <div className="mb-6">
+        {/* Mobile: Swiper — one slide per category */}
+        <div className="lg:hidden">
+          <Swiper
+            modules={[Pagination]}
+            spaceBetween={16}
+            slidesPerView={1}
+            autoHeight={true}
+            pagination={{
+              clickable: true,
+              bulletClass: 'swiper-project-bullet',
+              bulletActiveClass: 'swiper-project-bullet-active',
+            }}
+            className="skills-swiper"
+          >
+            {skillCategories.map((category) => (
+              <SwiperSlide key={category.id}>
                 <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-                  <span className="h-2 w-2 rounded-full bg-primary" />
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundImage: 'var(--primary-gradient)' }}
+                  />
                   {category.label}
                   <span className="rounded-full bg-background-hover px-2 py-0.5 text-xs font-bold text-foreground-muted">
                     {category.skills.length}
                   </span>
                 </h3>
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-3">
                   {category.skills.map((skill, index) => (
                     <SkillCard
                       key={skill.name}
@@ -124,11 +144,39 @@ export function TechnicalSkills() {
                     />
                   ))}
                 </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </Container>
+
+      {/* Swiper custom styles */}
+      <style>{`
+        .skills-swiper {
+          width: 100%;
+          padding-bottom: 48px !important;
+        }
+        .skills-swiper .swiper-slide {
+          height: auto;
+        }
+        .skills-swiper .swiper-pagination {
+          bottom: 0;
+        }
+        .swiper-project-bullet {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: var(--border-strong);
+          margin: 0 4px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .swiper-project-bullet-active {
+          background: var(--primary);
+          width: 24px;
+        }
+      `}</style>
     </section>
   );
 }

@@ -4,15 +4,23 @@ import { ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
+const RADIUS = 22;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 400);
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setVisible(scrollTop > 400);
+      setProgress(scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -33,14 +41,39 @@ export function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          aria-label="Back to top"
+          aria-label={`Back to top, ${Math.round(progress * 100)}% scrolled`}
           className={cn(
             'fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full',
-            'border border-border bg-background-surface text-foreground-secondary shadow-card',
+            'border-border bg-background-surface text-foreground-secondary shadow-card',
             'backdrop-blur-md transition-colors hover:border-primary/30 hover:bg-background-hover hover:text-foreground',
             'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background'
           )}
         >
+          <svg
+            className="pointer-events-none absolute -inset-1 h-14 w-14 -rotate-90"
+            viewBox="0 0 56 56"
+            aria-hidden="true"
+          >
+            <circle
+              cx="28"
+              cy="28"
+              r={RADIUS}
+              fill="none"
+              strokeWidth="2.5"
+              className="stroke-border"
+            />
+            <circle
+              cx="28"
+              cy="28"
+              r={RADIUS}
+              fill="none"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              className="stroke-primary transition-[stroke-dashoffset] duration-150"
+              strokeDasharray={CIRCUMFERENCE}
+              strokeDashoffset={CIRCUMFERENCE * (1 - progress)}
+            />
+          </svg>
           <ArrowUp className="h-5 w-5" aria-hidden="true" />
         </motion.button>
       )}

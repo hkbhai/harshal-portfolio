@@ -5,7 +5,7 @@ export const siteConfig = {
     'Full Stack Laravel Developer with 5+ years of experience building scalable web applications, enterprise systems, REST APIs, and AI-powered workflows.',
   url: 'https://harshalkatrodiya.dev',
   ogImage: '/images/og-image.png',
-  location: 'Surat, Gujarat',
+  location: 'Surat, Gujarat, India',
   email: 'harshalkatrodiya302@gmail.com',
   phone: '+91 9727455122',
   linkedin: 'https://www.linkedin.com/in/harshal-katrodiya-5266a8236/',

@@ -63,7 +63,7 @@ function getInitials(name) {
 function PhotoPlaceholder() {
   return (
     <div
-      className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-primary/15 via-background-card to-accent/8"
+      className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-primary/15 via-background-card to-accent/[0.08]"
       aria-hidden="true"
     >
       <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-border bg-background-surface md:h-24 md:w-24">
@@ -92,8 +92,13 @@ function FloatingCard({ card, reducedMotion }) {
       custom={index}
       variants={floatingCard}
       initial="hidden"
-      animate={reducedMotion ? 'visible' : ['visible', 'float']}
-      whileHover={reducedMotion ? {} : { scale: 1.06, y: -5 }}
+      animate={reducedMotion ? 'visible' : ['visible', 'float']} whileHover={{
+        scale: 1.04,
+        y: -4,
+        transition: {
+          duration: 0.2
+        }
+      }}
       transition={{ type: 'tween' }}
       aria-hidden="true"
       className={cn(
@@ -136,16 +141,21 @@ export function HeroVisual() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
-    stiffness: 120,
-    damping: 18,
-    mass: 0.8,
-  });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 120,
-    damping: 18,
-    mass: 0.8,
-  });
+  const rotateX = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [2, -2]),
+    {
+      stiffness: 180,
+      damping: 24,
+    }
+  );
+
+  const rotateY = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [-2, 2]),
+    {
+      stiffness: 180,
+      damping: 24,
+    }
+  );
 
   const handleMouseMove = (event) => {
     if (!enableTilt || !frameRef.current) return;
@@ -182,7 +192,7 @@ export function HeroVisual() {
             ? { duration: 0.8 }
             : { duration: 8, repeat: Infinity, ease: 'easeInOut' }
         }
-        className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[90px] md:h-[400px] md:w-[400px] lg:h-[460px] lg:w-[460px]"
+        className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-[70px] md:h-[400px] md:w-[400px] lg:h-[460px] lg:w-[460px]"
         aria-hidden="true"
       />
 
@@ -200,32 +210,40 @@ export function HeroVisual() {
       >
         {/* Outer decorative rings with hover animation */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute -inset-3 -z-10 rounded-[2.25rem] border border-border/40 transition-all duration-500 group-hover:border-primary/40 group-hover:-inset-4 md:-inset-4 md:rounded-[2.75rem]"
-          aria-hidden="true"
-        />
-        {/* Second, slightly larger ring */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="absolute -inset-6 -z-20 rounded-[3rem] border border-border/20 transition-all duration-700 group-hover:border-primary/20 group-hover:-inset-8 md:-inset-8 md:rounded-[3.5rem]"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="
+    absolute -inset-4 -z-10
+    rounded-[2.75rem]
+    border border-border/30
+    transition-all duration-500
+    group-hover:border-primary/60
+    group-hover:shadow-[0_0_35px_rgba(var(--color-primary-rgb),0.20)]
+  "
           aria-hidden="true"
         />
 
-        {/* Photo frame with premium hover effect */}
+        {/* Photo frame — hover lift only (no zoom, keeps photo sharp) */}
         <motion.div
-          whileHover={reducedMotion ? {} : { scale: 1.02, y: -4 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          whileHover={
+            reducedMotion
+              ? {}
+              : {
+                y: -10,
+                scale: 1.015,
+                transition: {
+                  duration: 0.35,
+                  ease: 'easeOut',
+                },
+              }
+          } transition={{ type: 'spring', stiffness: 200, damping: 20 }}
           className={cn(
             'group relative z-10 overflow-hidden rounded-3xl',
             'border border-border shadow-card',
             'bg-white dark:bg-[#0d0d14]',
             'h-[360px] w-[300px] md:h-[440px] md:w-[360px] lg:h-[500px] lg:w-[400px]',
             'hover:shadow-glow transition-shadow duration-500',
-            'hover:border-primary/30',
             'gradient-border',
           )}
         >
@@ -255,31 +273,45 @@ export function HeroVisual() {
               onError={() => dispatch('ERROR')}
               variants={heroImage}
               initial="hidden"
-              animate={
-                reducedMotion
-                  ? isLoaded
-                    ? 'visible'
-                    : 'hidden'
-                  : isLoaded
-                    ? ['visible', 'float']
-                    : 'hidden'
-              }
+              animate={isLoaded ? 'visible' : 'hidden'}
               transition={{
-                type: 'spring',
-                stiffness: 140,
-                damping: 16,
+                duration: 0.6,
+                ease: 'easeOut',
               }}
-              className="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              style={{
+                backfaceVisibility: 'hidden',
+              }} />
+          )}
+
+          {/* Hover photo — crossfades in with zoom animation on hover */}
+          {showPhoto && (
+            <img
+              src="/images/profile/Harshal-desk-photo.png"
+              alt={`${profile.name} — at work`}
+              width={400}
+              height={500}
+              loading="lazy"
+              decoding="async"
+              className={cn(
+                'absolute inset-0 h-full w-full object-cover object-center',
+                'opacity-0 scale-105',
+                'transition-[opacity,transform] duration-500 ease-out',
+                'group-hover:opacity-100 group-hover:scale-100',
+              )}
+              style={{
+                backfaceVisibility: 'hidden',
+              }}
             />
           )}
 
           {/* Animated corner accents on hover */}
           <div
-            className="absolute left-0 top-0 h-20 w-20 border-l-2 border-t-2 border-primary opacity-0 transition-all duration-500 group-hover:opacity-100"
+            className="absolute left-0 top-0 h-14 w-14 border-l-2 border-t-2 border-primary opacity-0 transition-all duration-300 group-hover:opacity-100"
             aria-hidden="true"
           />
           <div
-            className="absolute bottom-0 right-0 h-20 w-20 border-b-2 border-r-2 border-primary opacity-0 transition-all duration-500 group-hover:opacity-100"
+            className="absolute bottom-0 right-0 h-14 w-14 border-b-2 border-r-2 border-primary opacity-0 transition-all duration-300 group-hover:opacity-100"
             aria-hidden="true"
           />
         </motion.div>

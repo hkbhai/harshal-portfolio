@@ -175,7 +175,7 @@ export function ContactForm() {
               initial={reducedMotion ? {} : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? {} : { opacity: 0, y: -8 }}
-              className="flex items-start gap-3 rounded-xl border border-success/25 bg-success/8 p-4 text-success"
+              className="flex items-start gap-3 rounded-xl border border-success/25 bg-success/[0.08] p-4 text-success"
               role="alert"
             >
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
@@ -188,7 +188,7 @@ export function ContactForm() {
               initial={reducedMotion ? {} : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? {} : { opacity: 0, y: -8 }}
-              className="flex items-start gap-3 rounded-xl border border-error/25 bg-error/8 p-4 text-error"
+              className="flex items-start gap-3 rounded-xl border border-error/25 bg-error/[0.08] p-4 text-error"
               role="alert"
             >
               <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />

@@ -17,7 +17,7 @@ export function GradientBackground() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.0, ease: 'easeOut' }}
-        className="absolute left-1/2 top-0 h-[500px] w-[1000px] -translate-x-1/2 rounded-full bg-primary/12 blur-[100px] dark:bg-primary/10"
+        className="absolute left-1/2 top-0 h-[500px] w-[1000px] -translate-x-1/2 rounded-full bg-primary/[0.12] blur-[100px] dark:bg-primary/10"
       />
 
       {/* Secondary accent glow — bottom right */}
@@ -25,7 +25,7 @@ export function GradientBackground() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.15, ease: 'easeOut' }}
-        className="absolute -bottom-48 -right-32 h-[480px] w-[480px] rounded-full bg-accent/8 blur-[90px] dark:bg-accent/5"
+        className="absolute -bottom-48 -right-32 h-[480px] w-[480px] rounded-full bg-accent/[0.08] blur-[90px] dark:bg-accent/5"
       />
 
       {/* Tertiary glow — bottom left, light mode only adds some warmth */}
@@ -33,7 +33,7 @@ export function GradientBackground() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
-        className="absolute -bottom-24 -left-32 h-[320px] w-[320px] rounded-full bg-primary/6 blur-[80px] dark:opacity-0"
+        className="absolute -bottom-24 -left-32 h-[320px] w-[320px] rounded-full bg-primary/[0.06] blur-[80px] dark:opacity-0"
       />
 
       {/* Subtle dot grid */}

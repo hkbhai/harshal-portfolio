@@ -21,7 +21,6 @@ export function HeroButtons() {
       className="flex flex-wrap items-center gap-3 pt-2"
     >
       <Button
-        size="lg"
         leftIcon={Download}
         onClick={handleDownloadResume}
         aria-label="Download Harshal Katrodiya's resume PDF"
@@ -29,7 +28,6 @@ export function HeroButtons() {
         Download Resume
       </Button>
       <Button
-        size="lg"
         variant="secondary"
         leftIcon={Mail}
         onClick={handleContactScroll}

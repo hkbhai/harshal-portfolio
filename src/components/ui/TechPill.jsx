@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import {
   Code2, Component, Braces, Database, Webhook, Paintbrush, LayoutTemplate,
   Search, Cloud, Globe, GitBranch, Github, MessageSquare, MousePointer2,
-  Sparkles, Plane, Binary,
+  Sparkles, Plane, Binary, Zap, Triangle,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -10,7 +10,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const iconMap = {
   Code2, Component, Braces, Database, Webhook, Paintbrush, LayoutTemplate,
   Search, Cloud, Globe, GitBranch, Github, MessageSquare, MousePointer2,
-  Sparkles, Plane, Binary,
+  Sparkles, Plane, Binary, Zap, Triangle,
 };
 
 export function TechPill({ name, icon = 'Code2', className, index = 0 }) {
@@ -28,7 +28,7 @@ export function TechPill({ name, icon = 'Code2', className, index = 0 }) {
         'group inline-flex shrink-0 snap-start items-center gap-2.5',
         'rounded-full border border-border bg-background-card px-4 py-2',
         'shadow-card transition-all duration-200',
-        'hover:border-primary/35 hover:bg-background-hover hover:shadow-card-hover',
+        'hover:border-primary/40 hover:bg-background-hover hover:shadow-glow',
         'focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background',
         className,
       )}
@@ -39,8 +39,9 @@ export function TechPill({ name, icon = 'Code2', className, index = 0 }) {
       <span
         className={cn(
           'flex h-6 w-6 items-center justify-center rounded-full',
-          'bg-background-surface text-foreground-muted',
-          'transition-colors duration-200 group-hover:bg-primary/10 group-hover:text-primary',
+          'bg-primary/[0.08] text-primary/70',
+          'transition-all duration-300 group-hover:bg-[image:var(--primary-gradient)] group-hover:text-white',
+          'group-hover:shadow-[0_2px_10px_var(--primary-glow)]',
         )}
       >
         <Icon className="h-3 w-3" aria-hidden="true" />

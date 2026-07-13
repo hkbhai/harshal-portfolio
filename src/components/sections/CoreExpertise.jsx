@@ -1,7 +1,13 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
 import { Container } from '@ui/Container';
 import { ExpertiseCard } from '@ui/ExpertiseCard';
 import { AnimatedSection } from '@common/AnimatedSection';
 import { expertiseAreas } from '@/data/expertise';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export function CoreExpertise() {
   return (
@@ -21,9 +27,9 @@ export function CoreExpertise() {
           </p>
         </AnimatedSection>
 
-        {/* Expertise Grid */}
+        {/* Tablet & Desktop: Grid */}
         <div
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+          className="hidden gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
           role="list"
           aria-label="Core expertise areas"
         >
@@ -38,7 +44,65 @@ export function CoreExpertise() {
             />
           ))}
         </div>
+
+        {/* Mobile: Swiper */}
+        <div className="sm:hidden">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={16}
+            slidesPerView={1}
+            autoHeight={true}
+            autoplay={{ delay: 4000, disableOnInteraction: true, pauseOnMouseEnter: true }}
+            pagination={{
+              clickable: true,
+              bulletClass: 'swiper-project-bullet',
+              bulletActiveClass: 'swiper-project-bullet-active',
+            }}
+            className="expertise-swiper"
+          >
+            {expertiseAreas.map((area, index) => (
+              <SwiperSlide key={area.id}>
+                <div className="h-full [&>*]:h-full">
+                  <ExpertiseCard
+                    title={area.title}
+                    description={area.description}
+                    icon={area.icon}
+                    index={index}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </Container>
+
+      {/* Swiper custom styles */}
+      <style>{`
+        .expertise-swiper {
+          width: 100%;
+          padding-bottom: 48px !important;
+        }
+        .expertise-swiper .swiper-slide {
+          height: auto;
+        }
+        .expertise-swiper .swiper-pagination {
+          bottom: 0;
+        }
+        .swiper-project-bullet {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: var(--border-strong);
+          margin: 0 4px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .swiper-project-bullet-active {
+          background: var(--primary);
+          width: 24px;
+        }
+      `}</style>
     </section>
   );
 }

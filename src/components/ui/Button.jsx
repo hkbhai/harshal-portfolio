@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils';
 
 const variants = {
   primary: [
-    'bg-primary text-white border border-primary/80',
-    'hover:bg-primary-hover hover:border-primary hover:shadow-glow',
-    'active:bg-primary active:scale-[0.98]',
+    'bg-primary bg-[image:var(--primary-gradient)] text-white border border-primary/80',
+    'hover:brightness-110 hover:border-primary hover:shadow-glow',
+    'active:brightness-100 active:scale-[0.98]',
   ].join(' '),
   secondary: [
     'bg-background-card text-foreground border border-border-strong',

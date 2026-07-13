@@ -14,6 +14,9 @@ import {
   siGithub,
   siClaude,
   siGooglegemini,
+  siFastapi,
+  siVuedotjs,
+  siNextdotjs,
 } from 'simple-icons';
 
 export const skillCategories = [
@@ -35,6 +38,11 @@ export const skillCategories = [
         name: 'REST API Development',
         lucideIcon: 'Webhook',
         description: 'Secure API design and integration',
+      },
+      {
+        name: 'Python FastAPI',
+        icon: siFastapi,
+        description: 'High-performance Python API framework',
       },
     ],
   },
@@ -71,6 +79,16 @@ export const skillCategories = [
         name: 'Bootstrap',
         icon: siBootstrap,
         description: 'Responsive CSS framework',
+      },
+      {
+        name: 'Vue.js',
+        icon: siVuedotjs,
+        description: 'Progressive JavaScript framework',
+      },
+      {
+        name: 'Next.js',
+        icon: siNextdotjs,
+        description: 'React framework for production apps',
       },
     ],
   },

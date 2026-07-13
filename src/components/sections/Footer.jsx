@@ -145,7 +145,6 @@ export function Footer() {
                 variant="secondary"
                 leftIcon={Download}
                 onClick={handleDownloadResume}
-                className="w-full md:w-auto"
               >
                 Download Resume
               </Button>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Container } from '@ui/Container';
 import { ThemeToggle } from '@ui/ThemeToggle';
@@ -32,6 +32,8 @@ export function Navbar() {
   const mobileMenuRef = useRef(null);
   const mobileMenuButtonRef = useRef(null);
   const activeSection = useActiveSection(sectionIds);
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, mass: 0.3 });
 
   useLockBodyScroll(mobileMenuOpen);
 
@@ -113,6 +115,12 @@ export function Navbar() {
               ],
         )}
       >
+        {/* Scroll progress line */}
+        <motion.div
+          style={{ scaleX: progressScaleX }}
+          className="absolute left-0 top-0 h-0.5 w-full origin-left bg-primary"
+          aria-hidden="true"
+        />
         <Container>
           <nav className="flex items-center justify-between" aria-label="Main navigation">
             {/* Logo */}
@@ -146,7 +154,7 @@ export function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="activeNavIndicator"
-                        className="absolute inset-0 rounded-full bg-primary/12 ring-1 ring-primary/25"
+                        className="absolute inset-0 rounded-full bg-primary/[0.12] ring-1 ring-primary/25"
                         transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                         aria-hidden="true"
                       />
